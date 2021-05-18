@@ -50,7 +50,7 @@ function callWeatherApi(cityName) {
     });
     
 }
-
+callWeatherApi();
 // parm: value of search box (city name)
 // call the weather api with the city name to get the coordinates (lat, lon)
 // function callWeatherApi() {
@@ -76,6 +76,6 @@ function callWeatherApi(cityName) {
 // events ////////////////////////////////////////////////////////////////////
 // init - check local storage
 init();
-cityName();
+
 // click search button - call the api and get our cream filling
 // click on past city button (class) - just call the getWeather function with the label of the buton
