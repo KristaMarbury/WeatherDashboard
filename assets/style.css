@@ -6,6 +6,17 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.leftcon {
+    border: solid blueviolet;
+    float: left;
+}
+
+.rightcon {
+    border: solid brown;
+    float: right;
+}
+
+
 .sbutton {
     border: solid;
   background-color: rgba(17, 14, 207, 0.863);

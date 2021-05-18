@@ -40,8 +40,13 @@ function init() {
     console.log('no data');
 }
 // getWeather
-function callWeatherApi(cityName) {
-    let endpoint = `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
+function coordinatesApiCall() {
+    let endpoint = `http://api.openweathermap.org/data/2.5/forecast?q=${chicago}&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
+    fetch(endpoint);
+}
+
+function callWeatherApi(chicago) {
+    let endpoint = `http://api.openweathermap.org/data/2.5/forecast?q=${chicago}&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
     fetch(endpoint)
     
     .then((res) => res.json());
@@ -51,6 +56,7 @@ function callWeatherApi(cityName) {
     
 }
 callWeatherApi();
+
 // parm: value of search box (city name)
 // call the weather api with the city name to get the coordinates (lat, lon)
 // function callWeatherApi() {
@@ -73,7 +79,9 @@ callWeatherApi();
 // each card will have date, icon for condition, temp, wind, humidty
 // save to localstorage the city the user just searched,
 // check loclastorage for that city, dont add if already there
-// events ////////////////////////////////////////////////////////////////////
+
+// events ///////////////////////////////////////////////////////////////
+
 // init - check local storage
 init();
 
