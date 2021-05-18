@@ -48,7 +48,6 @@ function callWeatherApi(cityName) {
     then(data => {
         console.log(data.list);
     });
-    console.log(`here I am!`)
     
 }
 
@@ -77,5 +76,6 @@ function callWeatherApi(cityName) {
 // events ////////////////////////////////////////////////////////////////////
 // init - check local storage
 init();
+cityName();
 // click search button - call the api and get our cream filling
 // click on past city button (class) - just call the getWeather function with the label of the buton
