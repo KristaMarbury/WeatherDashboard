@@ -48,21 +48,22 @@ function callWeatherApi(cityName) {
     then(data => {
         console.log(data.list);
     });
+    console.log(`here I am!`)
     
 }
 
 // parm: value of search box (city name)
 // call the weather api with the city name to get the coordinates (lat, lon)
-function callWeatherApi() {
-    let endpoint = `http://api.openweathermap.org/data/2.5/forecast?q=${searchValue}&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
-    fetch(endpoint)
+// function callWeatherApi() {
+//     let endpoint = `http://api.openweathermap.org/data/2.5/forecast?q=${searchValue}&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
+//     fetch(endpoint)
     
-    .then((res) => res.json());
-    then(data => {
-        console.log(data.list);
-    });
+//     .then((res) => res.json());
+//     then(data => {
+//         console.log(data.list);
+//     });
     
-}
+// }
 
 
 // find the lat and lon within the data and set them as varibles
