@@ -23,16 +23,35 @@
 
     <!-- Textarea and button to initiate the search (needs to be a form! label, input box, and button in that order)-->
     <!-- left column is here -->
-    <label for="message"> Search Cities Below:</label>
     <section>
-        <textarea name="message" id="Enter City Here!"></textarea>
-    </section>
-    <button id="searchbtn">SEARCH!</button>
-    <!-- last ten cities viewed -->
-    <!-- include the create appends here? -->
+    <aside class="leftcol">
+    <form action="" method="get" class="citysrc">
+        <div class="citysrc">
+            <label for="citysrc" class="title is-3"> Search Cities Below: </label>
+        </div>
+        <ul>
+        <input class="form-control" type="text" id="search-value" />
+        <!-- <textarea name="message" id="Enter City Here!"></textarea> -->
+        </ul>
+        <ul>
+        <button id="searchbtn" class="sbutton">SEARCH!</button>
+        </ul>
+    </form>
+
+    <!-- last ten cities viewed as buttons for past searches -->
+    <ul class="past-list"></ul>
+    </aside>
+    
+    <!-- only save uppercase cities for buttons -->
 
     
     <!-- right column here -->
+    <section class="rightcol">
+        <div id="present" class="spot1"></div>
+        <div id="weather" class="spot2"></div>
+    </section>
+
+    </section>
    <!-- container for city, date, temp wind, humidity and uv index  -->
    <!-- color of uv index -->
    <!-- container for five day forcast (this will need to be a loop in the js file) -->

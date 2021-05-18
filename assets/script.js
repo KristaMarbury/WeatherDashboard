@@ -3,11 +3,17 @@
 // local storage will need to be clickable buttons for user history
 //local storage will also simply need to hold onto the city
 
-// api.openweathermap.org / geo / 1.0 / direct ? q = ${ city }& limit=5 & appid=${ apiKey }
-// api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=${apiKey}
+
 
 // assign global variables /////////////////////////////////////////////////////
-// apiKey
+
+
+// separate function fetching each aspect: temp, wind, humidity, uv
+
+
+
+
+
 // HMTL IDS
 // city
 // temp
@@ -17,6 +23,7 @@
 // five day container
 // cities history
 let cities = [];
+
 // functions //////////////////////////////////////////////////////////////////
 // init
 function init() {
@@ -33,8 +40,31 @@ function init() {
     console.log('no data');
 }
 // getWeather
+function callWeatherApi(cityName) {
+    let endpoint = `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
+    fetch(endpoint)
+    
+    .then((res) => res.json());
+    then(data => {
+        console.log(data.list);
+    });
+    
+}
+
 // parm: value of search box (city name)
 // call the weather api with the city name to get the coordinates (lat, lon)
+function callWeatherApi() {
+    let endpoint = `http://api.openweathermap.org/data/2.5/forecast?q=${searchValue}&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
+    fetch(endpoint)
+    
+    .then((res) => res.json());
+    then(data => {
+        console.log(data.list);
+    });
+    
+}
+
+
 // find the lat and lon within the data and set them as varibles
 // in the then of the call above, use the lat and lon to get curent weather and future
 // in the then of the call above, i find the data i need for the top card on the right (city, date, temp, wind, humity, uv index)
