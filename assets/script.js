@@ -41,21 +41,34 @@ function init() {
 }
 // getWeather
 function coordinatesApiCall() {
-    let endpoint = `http://api.openweathermap.org/data/2.5/forecast?q=${chicago}&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
-    fetch(endpoint);
+    let endpoint = `https://api.openweathermap.org/data/2.5/forecast?q=chicago&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
+    fetch(endpoint)
+
+    .then((res) => res.json())
+        .then(data => {
+            let long = data.city.coord.lon;
+            let latt = data.city.coord.lat;
+            callWeatherApi(long, latt);
+             document.getElementById("city").textContent = data.city.name;
+        console.log(data);
+    });
 }
 
-function callWeatherApi(chicago) {
-    let endpoint = `http://api.openweathermap.org/data/2.5/forecast?q=${chicago}&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
+function callWeatherApi(lon, lat) {
+    let endpoint = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=872734454a7aae3a1c12ea48ac211fb3`;
     fetch(endpoint)
     
-    .then((res) => res.json());
-    then(data => {
-        console.log(data.list);
+    .then((res) => res.json())
+        .then(data => {
+            document.getElementById("temp").textContent = data.current.temp;
+            document.getElementById("wind").textContent = data.current.wind_speed;
+            document.getElementById("humidity").textContent = data.current.humidity;
+            document.getElementById("uv").textContent = data.current.uvi;
+        console.log(data);
     });
     
 }
-callWeatherApi();
+coordinatesApiCall();
 
 // parm: value of search box (city name)
 // call the weather api with the city name to get the coordinates (lat, lon)

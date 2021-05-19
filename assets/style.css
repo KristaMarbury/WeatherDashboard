@@ -14,6 +14,7 @@ body {
 .rightcon {
     border: solid brown;
     float: right;
+    padding-right: 5rem;
 }
 
 
