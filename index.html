@@ -23,20 +23,13 @@
 
     <!-- Textarea and button to initiate the search (needs to be a form! label, input box, and button in that order)-->
     <!-- left column is here -->
-    <aside class="leftcon">
-    <form action="" method="get" class="citysrc">
-        <div class="citysrc">
-            <label for="citysrc" class="title is-3"> Search Cities Below: </label>
-        </div>
-        <ul>
-        <input class="form-control" type="text" id="search-value" />
-        <!-- <textarea name="message" id="Enter City Here!"></textarea> -->
-        </ul>
-        <ul>
+    <aside class="leftcard">
+    <form id="search-form" method="POST">
+        <label for="search-text">Type A City Name Below: </label>
+        <input type="text" placeholder="Chicago..." name="search-text" id="search-text" />
         <button id="searchbtn" class="sbutton">SEARCH!</button>
-        </ul>
     </form>
-
+   
     <!-- last ten cities viewed as buttons for past searches -->
     <ul class="past-list"></ul>
     </aside>
@@ -49,32 +42,26 @@
     <!-- container for city, date, temp wind, humidity and uv index  -->
         <section id="box1" class="box1">
         <div id="city" class="title is-2">Present!</div>
-        <div id="temp">Hello!</div>
-        <div id="wind">Right Here!</div>
-        <div id="humidity">Wassup?</div>
-        <div id="uv" class="uvin">Holla!</div>
+        <div> Temperature: <span id="temp"> Hello! </span> </div>
+        <div> Wind: <span id="wind"> Right Here! </span> </div>
+        <div> Humidity: <span id="humidity"> Wassup? </span> </div>
+        <div> UV Index: <span id="uv" class="uvin"> Holla! </span> </div>
         </section>
 
         <section id="box2a" class="box2 is-flex"></section>
     <!-- container for five day forcast (this will need to be a loop in the js file) -->
         <section id="box2" class="box2 is-flex">
             <!-- Day One Card -->
-        <div class="card">
-            <header class="card-header">
-                <p class="card-header-title">
-                    Day 1
-                </p>
-                <button class="card-header-icon" aria-label="more options">
-                </button>
-            </header>
-            <div class="card-content">
-                <div class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                    <br>
-                    <time datetime="2016-1-1">16:56 PM - 18 May 2021</time>
-                </div>
-            </div>
-            </div>
+        <div id="daplace" class="card column">
+            <h2 class="card-header-title">Day 1</h2>
+            <p class="card-content">The Elves, who called themselves the Quendi, and who in lore are commonly
+                referred
+                to as the Eldar (adj. Eldarin), were
+                the first and eldest of the Children of Ilúvatar, and are considered to be the fairest and wisest of
+                any
+                race of Arda
+                given sapience.</p>
+        </div>
             <!-- Day 2 Card -->
             <div class="card">
                 <header class="card-header">

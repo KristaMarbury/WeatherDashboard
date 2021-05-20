@@ -1,24 +1,14 @@
 // the api will need to call 4 items temp, wind, humidity, and uv index
-
 // local storage will need to be clickable buttons for user history
 //local storage will also simply need to hold onto the city
 
-
-
 // assign global variables /////////////////////////////////////////////////////
+let searchInput1 = document.querySelector("#daplace");
+let searchInput2 = document.querySelector("#card-content");
+let findIt = document.querySelector("#searchbtn");
 
 
 // separate function fetching each aspect: temp, wind, humidity, uv
-
-
-
-
-
-// HMTL IDS
-// city
-// temp
-// wind
-// humidty
 // uv index - set class
 // five day container
 // cities history
@@ -41,7 +31,7 @@ function init() {
 }
 // getWeather
 function coordinatesApiCall() {
-    let endpoint = `https://api.openweathermap.org/data/2.5/forecast?q=chicago&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
+    let endpoint = `https://api.openweathermap.org/data/2.5/forecast?q=&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
     fetch(endpoint)
 
     .then((res) => res.json())
@@ -54,37 +44,30 @@ function coordinatesApiCall() {
     });
 }
 
+// find the lat and lon within the data and set them as varibles
 function callWeatherApi(lon, lat) {
     let endpoint = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=872734454a7aae3a1c12ea48ac211fb3`;
     fetch(endpoint)
     
     .then((res) => res.json())
         .then(data => {
-            document.getElementById("temp").textContent = data.current.temp;
-            document.getElementById("wind").textContent = data.current.wind_speed;
-            document.getElementById("humidity").textContent = data.current.humidity;
-            document.getElementById("uv").textContent = data.current.uvi;
-        console.log(data);
-    });
+          // traversing the DOM in rightcon
+          document.getElementById("temp").textContent = data.current.temp;
+          document.getElementById("wind").textContent = data.current.wind_speed;
+          document.getElementById("humidity").textContent =
+            data.current.humidity;
+          document.getElementById("uv").textContent = data.current.uvi;
+          console.log(data);
+        });
     
 }
-coordinatesApiCall();
 
 // parm: value of search box (city name)
-// call the weather api with the city name to get the coordinates (lat, lon)
-// function callWeatherApi() {
-//     let endpoint = `http://api.openweathermap.org/data/2.5/forecast?q=${searchValue}&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
-//     fetch(endpoint)
+function printCity() {
     
-//     .then((res) => res.json());
-//     then(data => {
-//         console.log(data.list);
-//     });
-    
-// }
+}
 
 
-// find the lat and lon within the data and set them as varibles
 // in the then of the call above, use the lat and lon to get curent weather and future
 // in the then of the call above, i find the data i need for the top card on the right (city, date, temp, wind, humity, uv index)
 // RENDER FUNCTION if uv index greater than some value, set the class
@@ -97,6 +80,8 @@ coordinatesApiCall();
 
 // init - check local storage
 init();
-
+//calls the weather api city
+coordinatesApiCall();
 // click search button - call the api and get our cream filling
+
 // click on past city button (class) - just call the getWeather function with the label of the buton
