@@ -31,7 +31,7 @@ function init() {
 }
 // getWeather
 function coordinatesApiCall() {
-    let endpoint = `https://api.openweathermap.org/data/2.5/forecast?q=&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
+    let endpoint = `https://api.openweathermap.org/data/2.5/forecast?q=chicago&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
     fetch(endpoint)
 
     .then((res) => res.json())
@@ -63,9 +63,9 @@ function callWeatherApi(lon, lat) {
 }
 
 // parm: value of search box (city name)
-function printCity() {
+// function printCity() {
     
-}
+// }
 
 
 // in the then of the call above, use the lat and lon to get curent weather and future
@@ -83,5 +83,10 @@ init();
 //calls the weather api city
 coordinatesApiCall();
 // click search button - call the api and get our cream filling
-
+document.getElementById("searchbtn").addEventListener("click", function (event) {
+    event.preventDefault();
+    console.log("button clicked")
+    city = document.querySelector("#search-text").value
+    console.log(city)
+});
 // click on past city button (class) - just call the getWeather function with the label of the buton
