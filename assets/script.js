@@ -28,10 +28,12 @@ function init() {
         })
     }
     console.log('no data');
+    coordinatesApiCall();
 }
 // getWeather
 function coordinatesApiCall() {
-    let endpoint = `https://api.openweathermap.org/data/2.5/forecast?q=chicago&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
+    let city = document.getElementById("search-text").value || "chicago";
+    let endpoint = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
     fetch(endpoint)
 
     .then((res) => res.json())
@@ -81,12 +83,13 @@ function callWeatherApi(lon, lat) {
 // init - check local storage
 init();
 //calls the weather api city
-coordinatesApiCall();
+
 // click search button - call the api and get our cream filling
 document.getElementById("searchbtn").addEventListener("click", function (event) {
     event.preventDefault();
     console.log("button clicked")
     city = document.querySelector("#search-text").value
     console.log(city)
+    coordinatesApiCall();
 });
 // click on past city button (class) - just call the getWeather function with the label of the buton
