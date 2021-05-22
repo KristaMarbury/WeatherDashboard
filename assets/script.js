@@ -3,9 +3,8 @@
 //local storage will also simply need to hold onto the city
 
 // assign global variables /////////////////////////////////////////////////////
-let searchInput1 = document.querySelector("#daplace");
-let searchInput2 = document.querySelector("#card-content");
-let findIt = document.querySelector("#searchbtn");
+
+
 
 
 // separate function fetching each aspect: temp, wind, humidity, uv
@@ -30,6 +29,7 @@ function init() {
     console.log('no data');
     coordinatesApiCall();
 }
+
 // getWeather
 function coordinatesApiCall() {
     let city = document.getElementById("search-text").value || "chicago";
@@ -59,14 +59,23 @@ function callWeatherApi(lon, lat) {
           document.getElementById("humidity").textContent =
             data.current.humidity;
           document.getElementById("uv").textContent = data.current.uvi;
-          console.log(data);
+            console.log(data);
+            // dayCard(data);
         });
     
 }
 
-// parm: value of search box (city name)
-// function printCity() {
-    
+// function dayCard(data) {
+//     $("#daplace")
+//         .append(
+//             `<h2 class="card-header-title">${data.daily.dt}</h2>
+//              <p class="card-content">temperature: ${data.daily.temp}</p>
+//               <p class="card-content">weather: ${data.daily.weather}</p>
+//                 <p class="card-content">humidity: ${data.daily.humidity}</p>
+//                 <p class="card-content">uv index: ${data.current.uvi}</p>`);
+//     console.log(data);
+//       //tried to apply the cream filling, but came up with undefined
+   
 // }
 
 

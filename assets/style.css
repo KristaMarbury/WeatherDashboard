@@ -19,10 +19,10 @@ body {
   float: left;
 }
 
-.rightcon {
+.rightcard {
     border: solid brown;
     float: right;
-    padding-right: 5rem;
+    padding: 3rem;
 }
 
 .uvin {
