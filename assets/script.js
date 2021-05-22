@@ -23,7 +23,7 @@ function init() {
         cities = JSON.parse(citiesStorage);
         console.log(cities);
         cities.forEach(city => {
-            // make and append a button to the left panel
+           button.querySelector("#pastsearch");
         })
     }
     console.log('no data');
@@ -58,26 +58,42 @@ function callWeatherApi(lon, lat) {
           document.getElementById("wind").textContent = data.current.wind_speed;
           document.getElementById("humidity").textContent =
             data.current.humidity;
-          document.getElementById("uv").textContent = data.current.uvi;
+            document.getElementById("uv").textContent = data.current.uvi;
+            let uvClass = checkClass(data.current.uvi);
+            document.getElementById("uv").setAttribute("class", uvClass);
             console.log(data);
-            // dayCard(data);
+            dayCard(data);
         });
     
 }
 
-// function dayCard(data) {
-//     $("#daplace")
-//         .append(
-//             `<h2 class="card-header-title">${data.daily.dt}</h2>
-//              <p class="card-content">temperature: ${data.daily.temp}</p>
-//               <p class="card-content">weather: ${data.daily.weather}</p>
-//                 <p class="card-content">humidity: ${data.daily.humidity}</p>
-//                 <p class="card-content">uv index: ${data.current.uvi}</p>`);
-//     console.log(data);
-//       //tried to apply the cream filling, but came up with undefined
+function dayCard(data) {
+    const days = data.daily;
+    console.log(days);
+    days.forEach(day => {
+        $("#daplace").append(
+    `<div> <h2 class="card-header-title">${day.dt}</h2>
+    <p class="card-content">temperature: ${day.temp.day}</p>
+    <p class="card-content">weather: ${day.weather[0].icon}</p>
+    <p class="card-content">humidity: ${day.humidity}</p>
+    <p class="card-content">uv index: ${day.uvi}</p></div>`
+);
+    })
+    
+    console.log(data);
+      //tried to apply the cream filling, but came up with undefined
    
-// }
+}
 
+function checkClass(uv) {
+  if (uv < 3) {
+    return "ok";
+  } else if (uv < 7) {
+    return "warning";
+  } else {
+    return "danger";
+  }
+}
 
 // in the then of the call above, use the lat and lon to get curent weather and future
 // in the then of the call above, i find the data i need for the top card on the right (city, date, temp, wind, humity, uv index)

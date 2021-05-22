@@ -6,6 +6,10 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.flexwrapper{
+    display: flex;
+}
+
 .leftcard {
     display: block;
   background-color:	#FFFFE0;
@@ -15,28 +19,37 @@ body {
     rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
   margin: 60px auto;
   padding: 20px;
-  width: 15vw;
-  float: left;
+  width: 20vw;
+
 }
 
 .rightcard {
-    border: solid brown;
-    float: right;
-    padding: 3rem;
+    border: solid black;
+    display: block;
+  border-radius: 8px;
+  box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
+    rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+  margin: 60px auto;
+  padding: 20px;
+  width: 65vw;
+  
 }
 
-.uvin {
-    /* background-color: red; */
+.ok {
     background-color: royalblue;
-    /* background-color: yellow; */
+}
+.warning {
+    background-color: yellow;
+}
+.danger {
+    background-color: red;
 }
 
 .sbutton {
     border: solid;
   background-color: rgba(17, 14, 207, 0.863);
   border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
-    0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
   color: hsl(0, 0%, 100%);
   display: inline-block;
   font-size: 22px;
