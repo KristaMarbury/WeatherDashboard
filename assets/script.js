@@ -13,6 +13,7 @@
 // cities history
 let cities = [];
 
+
 // functions //////////////////////////////////////////////////////////////////
 // init
 function init() {
@@ -26,8 +27,8 @@ function init() {
            button.querySelector("#pastsearch");
         })
     }
-    console.log('no data');
     coordinatesApiCall();
+
 }
 
 // getWeather
@@ -46,11 +47,17 @@ function coordinatesApiCall() {
     });
 }
 
+function clearRightCard() {
+    $("#box1").empty();
+}
+
 // find the lat and lon within the data and set them as varibles
 function callWeatherApi(lon, lat) {
     let endpoint = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=872734454a7aae3a1c12ea48ac211fb3`;
     fetch(endpoint)
     
+        
+        
     .then((res) => res.json())
         .then(data => {
           // traversing the DOM in rightcon
@@ -67,17 +74,21 @@ function callWeatherApi(lon, lat) {
     
 }
 
+// function mainDayCard() {
+
+// }
+
 function dayCard(data) {
     const days = data.daily;
     console.log(days);
     days.forEach(day => {
         $("#daplace").append(
-    `<div> <h2 class="card-header-title">${day.dt}</h2>
-    <p class="card-content">temperature: ${day.temp.day}</p>
-    <p class="card-content">weather: ${day.weather[0].icon}</p>
-    <p class="card-content">humidity: ${day.humidity}</p>
-    <p class="card-content">uv index: ${day.uvi}</p></div>`
-);
+          `<div> <h2 class="card-header-title has-background-link-light">${day.dt}</h2>
+    <p class="card-content has-background-link-light">temperature: ${day.temp.day}</p>
+    <p class="card-content has-background-link-light">weather: ${day.weather[0].icon}</p>
+    <p class="card-content has-background-link-light">humidity: ${day.humidity}</p>
+    <p class="card-content has-background-link-light">uv index: ${day.uvi}</p></div>`
+        );
     })
     
     console.log(data);
@@ -112,9 +123,11 @@ init();
 // click search button - call the api and get our cream filling
 document.getElementById("searchbtn").addEventListener("click", function (event) {
     event.preventDefault();
+    clearRightCard();
     console.log("button clicked")
     city = document.querySelector("#search-text").value
     console.log(city)
     coordinatesApiCall();
+     
 });
 // click on past city button (class) - just call the getWeather function with the label of the buton
