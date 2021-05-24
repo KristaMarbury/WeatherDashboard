@@ -107,7 +107,7 @@ function dayCard(data) {
     const days = data.daily;
     // console.log(days);
     for (i = 1; i < 6; i++) {
-        let unixTime = data.dt;
+        let unixTime = data.current.dt;
         let date = new Date(unixTime * 1000);
         days.forEach(day => {
             $("#daplace").append(
