@@ -12,9 +12,9 @@ A site dedicated to giving you the weather from cities all over the world! Just 
     -jQuery
         
 # Known Bugs
+The day cards load, but the titles for each day come back undefined. The first city that loads (which is Chicago) will be repeated when the page is refreshed. 
 
--The day cards load, but the titles for each day come back undefined. 
--The first city that loads (which is Chicago) will be repeated when the page is refreshed.
+
 
 # Contact Information
 
