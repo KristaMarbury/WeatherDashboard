@@ -93,12 +93,12 @@ function callWeatherApi(lon, lat) {
 }
 
 function mainDayCard(data) {
-    //  $(".rightcard").append(
-    //    `<div> Temperature: ${data.current.temp}</div>
-    //   <div> Wind: ${data.current.wind_speed}</div>
-    //   <div> Humidity: ${data.current.humidity}</div>
-    //   <div> UV Index: ${data.current.uvi}</div>`
-    //  );
+     $(".box1").append(
+       `<div> Temperature: ${data.current.temp}</div>
+      <div> Wind: ${data.current.wind_speed}</div>
+      <div> Humidity: ${data.current.humidity}</div>
+      <div> UV Index: ${data.current.uvi}</div>`
+     );
 };
 
 function dayCard(data) {
@@ -148,7 +148,7 @@ init();
 //calls the weather api city
 
 // click search button - call the api and get our cream filling
-document.getElementById("searchbtn").addEventListener("click", function (event) {
+document.getElementById("search-form").addEventListener("submit", function (event) {
     event.preventDefault();
     // clearMainDayCard();
     // clearRightCard();
