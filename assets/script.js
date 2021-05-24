@@ -93,12 +93,12 @@ function callWeatherApi(lon, lat) {
 }
 
 function mainDayCard(data) {
-     $(".rightcard").append(
-       `<div> Temperature: ${data.current.temp}</div>
-      <div> Wind: ${data.current.wind_speed}</div>
-      <div> Humidity: ${data.current.humidity}</div>
-      <div> UV Index: ${data.current.uvi}</div>`
-     );
+    //  $(".rightcard").append(
+    //    `<div> Temperature: ${data.current.temp}</div>
+    //   <div> Wind: ${data.current.wind_speed}</div>
+    //   <div> Humidity: ${data.current.humidity}</div>
+    //   <div> UV Index: ${data.current.uvi}</div>`
+    //  );
 };
 
 function dayCard(data) {
