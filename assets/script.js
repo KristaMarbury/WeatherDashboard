@@ -62,13 +62,13 @@ function coordinatesApiCall() {
     });
 }
 
-function clearRightCard() {
-    $("#box1").empty();
-}
+// function clearRightCard() {
+//     $("#box1").empty();
+// }
 
-function clearMainDayCard() {
-    $(".rightcard").empty();
-}
+// function clearMainDayCard() {
+//     $(".rightcard").empty();
+// }
 
 // find the lat and lon within the data and set them as varibles
 function callWeatherApi(lon, lat) {
@@ -107,7 +107,7 @@ function dayCard(data) {
     const days = data.daily;
     // console.log(days);
     for (i = 1; i < 6; i++) {
-        let unixTime = data.current.dt;
+        let unixTime = data.dt;
         let date = new Date(unixTime * 1000);
         days.forEach(day => {
             $("#daplace").append(
@@ -152,8 +152,8 @@ init();
 // click search button - call the api and get our cream filling
 document.getElementById("searchbtn").addEventListener("click", function (event) {
     event.preventDefault();
-    clearMainDayCard();
-    clearRightCard();
+    // clearMainDayCard();
+    // clearRightCard();
     console.log("button clicked")
     city = document.querySelector("#search-text").value
     console.log(city)
