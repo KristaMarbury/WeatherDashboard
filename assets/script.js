@@ -57,7 +57,7 @@ function coordinatesApiCall() {
             let long = data.city.coord.lon;
             let latt = data.city.coord.lat;
             callWeatherApi(long, latt);
-            //  document.getElementById("city").textContent = data.city.name;
+             document.getElementById("city").textContent = data.city.name;
         console.log(data);
     });
 }
@@ -74,12 +74,10 @@ function coordinatesApiCall() {
 function callWeatherApi(lon, lat) {
     let endpoint = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=872734454a7aae3a1c12ea48ac211fb3`;
     fetch(endpoint)
-    
-        
-        
+
     .then((res) => res.json())
         .then(data => {
-          // traversing the DOM in rightcon
+        //   traversing the DOM in rightcon
         //   document.getElementById("temp").textContent = data.current.temp;
         //   document.getElementById("wind").textContent = data.current.wind_speed;
         //   document.getElementById("humidity").textContent =
@@ -95,13 +93,13 @@ function callWeatherApi(lon, lat) {
 }
 
 function mainDayCard(data) {
-    $(".rightcard").append(
-      `<div> Temperature: ${data.current.temp}
-      </div>
+     $(".rightcard").append(
+       `<div> Temperature: ${data.current.temp}</div>
       <div> Wind: ${data.current.wind_speed}</div>
       <div> Humidity: ${data.current.humidity}</div>
-      <div> UV Index: ${data.current.uvi}</div>`);
-}
+      <div> UV Index: ${data.current.uvi}</div>`
+     );
+};
 
 function dayCard(data) {
     const days = data.daily;
@@ -155,7 +153,7 @@ document.getElementById("searchbtn").addEventListener("click", function (event) 
     // clearMainDayCard();
     // clearRightCard();
     console.log("button clicked")
-    city = document.querySelector("#search-text").value
+    city = document.querySelector("#search-text").value = "";
     console.log(city)
     coordinatesApiCall();
      
