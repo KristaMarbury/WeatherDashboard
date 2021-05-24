@@ -12,8 +12,9 @@ let cities = [];
 function init() {
     // check local storage for the key (cities) if present and create buttons
     // checkLocalStorage();
-    coordinatesApiCall();
     callCity();
+    coordinatesApiCall();
+    
 
 }
 
@@ -26,27 +27,31 @@ function callCity() {
     let storedData = localStorage.getItem("cities");
      if (storedData) {
        // loop through local storage and create buttons with the button label as the city
-       places = JSON.parse(storedData);
-       console.log(places);
+       cities = JSON.parse(storedData);
+       console.log(cities);
     //    cities.forEach((city) => {
     //      button.querySelector("#pastsearch");
     //    });
-    buttonMasher(places);
+    buttonMasher(cities);
      }
     
 }
 
 function buttonMasher(places) {
+    $("#pastsearch").empty();
   for (i = 0; i < places.length; i++) {
     $("#pastsearch").append(
       `<button class="sbutton">${places[i]}</button>`
     );
   }
 }
+
 // getWeather
 function coordinatesApiCall() {
     let city = document.getElementById("search-text").value || "chicago";
+    document.querySelector("#search-text").value = "";
     cities.push(city);
+    buttonMasher(cities);
     stashCity();
     let endpoint = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
     fetch(endpoint)
@@ -66,9 +71,9 @@ function coordinatesApiCall() {
 //     $("#box1").empty();
 // }
 
-// function clearMainDayCard() {
-//     $(".rightcard").empty();
-// }
+function clearMainDayCard() {
+    $(".rightcard").empty();
+}
 
 // find the lat and lon within the data and set them as varibles
 function callWeatherApi(lon, lat) {
@@ -86,6 +91,7 @@ function callWeatherApi(lon, lat) {
         //     let uvClass = checkClass(data.current.uvi);
         //     document.getElementById("uv").setAttribute("class", uvClass);
             console.log(data);
+            // clearMainDayCard();
             mainDayCard(data);
             dayCard(data);
         });
@@ -150,11 +156,11 @@ init();
 // click search button - call the api and get our cream filling
 document.getElementById("search-form").addEventListener("submit", function (event) {
     event.preventDefault();
-    // clearMainDayCard();
+    clearMainDayCard();
     // clearRightCard();
     console.log("button clicked")
-    city = document.querySelector("#search-text").value = "";
-    console.log(city)
+    
+    
     coordinatesApiCall();
      
 });
