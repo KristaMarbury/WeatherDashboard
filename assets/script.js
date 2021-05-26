@@ -1,6 +1,3 @@
-// the api will need to call 4 items temp, wind, humidity, and uv index
-// local storage will need to be clickable buttons for user history
-//local storage will also simply need to hold onto the city
 
 // assign global variables /////////////////////////////////////////////////////
 let cities = [];
@@ -10,17 +7,18 @@ let cities = [];
 
 // init
 function init() {
-    // check local storage for the key (cities) if present and create buttons
-    // checkLocalStorage();
     callCity();
     coordinatesApiCall();
     
 
 }
 
-function stashCity() {
-     let citiesStorage = cities;
-    localStorage.setItem("cities", JSON.stringify(citiesStorage));
+function stashCity(city) {
+  if (!cities.includes(city)){
+    cities.push(city);
+    localStorage.setItem("cities", JSON.stringify(cities));
+  };
+
 }
 
 function callCity() {
@@ -37,27 +35,36 @@ function callCity() {
     
 }
 
-function buttonMasher(places) {
+function buttonMasher() {
+  let places = JSON.parse(localStorage.getItem("cities"));
     $("#pastsearch").empty();
   for (i = 0; i < places.length; i++) {
     $("#pastsearch").append(
-      `<button class="sbutton">${places[i]}</button>`
+      `<button class="sbutton" id="secretsauce" data-city="${places[i]}">${places[i]}</button>`
     );
   }
 }
 
+function getSecretSauce(event) {
+  
+  event.preventDefault();
+  let btn = event.target;
+  let city = btn.getAttribute("data-city");
+  coordinatesApiCall(city);
+}
+
 // getWeather
-function coordinatesApiCall() {
-    let city = document.getElementById("search-text").value || "chicago";
+function coordinatesApiCall(spot) {
+  let city = spot || document.getElementById("search-text").value || "chicago";
+     stashCity(city);
     document.querySelector("#search-text").value = "";
-    cities.push(city);
-    buttonMasher(cities);
-    stashCity();
+    buttonMasher();
     let endpoint = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=872734454a7aae3a1c12ea48ac211fb3&units=imperial`;
     fetch(endpoint)
 
     .then((res) => res.json())
-        .then(data => {
+      .then(data => {
+        $(".rightcard").empty();
             $(".rightcard").append(`<section id="box1" class="box1"><div id="city" class="title is-2"> ${data.city.name} </div></section>`)
             let long = data.city.coord.lon;
             let latt = data.city.coord.lat;
@@ -111,13 +118,14 @@ function dayCard(data) {
     const days = data.daily;
     // console.log(days);
     for (i = 1; i < 6; i++) {
-        let unixTime = data.dt;
-        let date = new Date(unixTime * 1000);
-        days.forEach(day => {
+        
+      days.forEach(day => {
+    let unixTime = day.dt;
+    let date = new Date(unixTime * 1000);
             $("#daplace").append(
                 `<div> <h2 class="card-header-title has-background-link-light">${date}</h2>
                 <p class="card-content has-background-link-light">temperature: ${day.temp.day}</p>
-                <p class="card-content has-background-link-light">weather: ${day.weather[0].icon}</p>
+                <p class="card-content has-background-link-light">weather: <img src= "https://openweathermap.org/img/w/${day.weather[0].icon}.png"/></p>
                 <p class="card-content has-background-link-light">humidity: ${day.humidity}</p>
                 <p class="card-content has-background-link-light">uv index: ${day.uvi}</p></div>`
             );
@@ -139,13 +147,6 @@ function checkClass(uv) {
   }
 }
 
-// in the then of the call above, use the lat and lon to get curent weather and future
-// in the then of the call above, i find the data i need for the top card on the right (city, date, temp, wind, humity, uv index)
-// RENDER FUNCTION if uv index greater than some value, set the class
-// RENDER FUNCTION for the 5 day forecast i want to loop through array of daily data and dynamically create a card and append it to the website
-// each card will have date, icon for condition, temp, wind, humidty
-// save to localstorage the city the user just searched,
-// check loclastorage for that city, dont add if already there
 
 // events ///////////////////////////////////////////////////////////////
 
@@ -156,7 +157,7 @@ init();
 // click search button - call the api and get our cream filling
 document.getElementById("search-form").addEventListener("submit", function (event) {
     event.preventDefault();
-    clearMainDayCard();
+  clearMainDayCard();
     // clearRightCard();
     console.log("button clicked")
     
@@ -164,4 +165,5 @@ document.getElementById("search-form").addEventListener("submit", function (even
     coordinatesApiCall();
      
 });
-// click on past city button (class) - just call the getWeather function with the label of the buton
+
+document.getElementById("pastsearch").addEventListener("click", getSecretSauce);
