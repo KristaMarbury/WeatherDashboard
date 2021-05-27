@@ -115,9 +115,8 @@ function mainDayCard(data) {
 };
 
 function dayCard(data) {
-    const days = data.daily;
+  const days = data.daily.slice(0,5);
     // console.log(days);
-    for (i = 1; i < 6; i++) {
         
       days.forEach(day => {
     let unixTime = day.dt;
@@ -131,7 +130,7 @@ function dayCard(data) {
             );
     
         })
-    }
+  
     console.log(data);
       //tried to apply the cream filling, but came up with undefined
    

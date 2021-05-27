@@ -10,8 +10,16 @@ body {
     display: flex;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .leftcard {
     display: flex;
+    flex-direction: column;
+    align-items: center;
   background-color:	#FFFFE0;
   border: 1px solid #eceff1;
   border-radius: 8px;
