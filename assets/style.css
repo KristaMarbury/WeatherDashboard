@@ -42,6 +42,12 @@ body {
   
 }
 
+.has-background-link {
+  margin: 1%;
+  border: black;
+  box-shadow: 2px 2px;
+}
+
 .ok {
     background-color: royalblue;
 }

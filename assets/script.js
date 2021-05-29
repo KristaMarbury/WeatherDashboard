@@ -46,7 +46,7 @@ function buttonMasher() {
 }
 
 function getSecretSauce(event) {
-  
+  $(".has-background-link").remove();
   event.preventDefault();
   let btn = event.target;
   let city = btn.getAttribute("data-city");
@@ -73,10 +73,6 @@ function coordinatesApiCall(spot) {
         console.log(data);
     });
 }
-
-// function clearRightCard() {
-//     $("#box1").empty();
-// }
 
 function clearMainDayCard() {
     $(".rightcard").empty();
@@ -114,19 +110,21 @@ function mainDayCard(data) {
      );
 };
 
+
 function dayCard(data) {
+
   const days = data.daily.slice(0,5);
-    // console.log(days);
         
       days.forEach(day => {
     let unixTime = day.dt;
-    let date = new Date(unixTime * 1000);
+        let date = new Date(unixTime * 1000);
+        // $("#daplace").empty();
             $("#daplace").append(
-                `<div> <h2 class="card-header-title has-background-link-light">${date}</h2>
-                <p class="card-content has-background-link-light">temperature: ${day.temp.day}</p>
-                <p class="card-content has-background-link-light">weather: <img src= "https://openweathermap.org/img/w/${day.weather[0].icon}.png"/></p>
-                <p class="card-content has-background-link-light">humidity: ${day.humidity}</p>
-                <p class="card-content has-background-link-light">uv index: ${day.uvi}</p></div>`
+              `<div class="card has-background-link "> <h2 class="card-header-title">${date}</h2>
+                <p>temperature: ${day.temp.day}</p>
+                <p>weather: <img src= "https://openweathermap.org/img/w/${day.weather[0].icon}.png"/></p>
+                <p>humidity: ${day.humidity}</p>
+                <p>uv index: ${day.uvi}</p></div>`
             );
     
         })
